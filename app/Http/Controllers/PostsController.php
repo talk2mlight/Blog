@@ -10,7 +10,9 @@ class PostsController extends Controller
     //
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::latest()->get();
+
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
@@ -20,7 +22,23 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        dd(request()->all());
 
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        Post::create(request(['title', 'body']));
+
+        return redirect('/');
+
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+
+
+        return view('posts.show', compact('post'));
     }
 }
