@@ -5,45 +5,56 @@
 @section('content')
 <main role="main" class="container">
 
+
+      <!-- This is the blog header-->
       <div class=" clo-md-12 jumbotron">
+
           <h1>Welcome to our Blog</h1>
+
       </div>
 
 
 
         <div class="row">
+
           <div class="col-md-8 blog-main">
+
             <h3 class="pb-3 mb-4 font-italic border-bottom">
+
               Show Posts Posts
+
             </h3>
 
+                <!-- This the Post title-->
                 <h1>{{ $post->title}}</h1>
 
+                <!-- This is the Body of the post -->
                 <p>{{ $post->body}}</p>
 
-
                 <hr>
+
                 <div class="comments">
 
                   <ul class="list-group">
 
-                  @foreach ($post->comments as $comment)
+                      @foreach ($post->comments as $comment)
 
-                    <li class="list-group-item">
+                          <li class="list-group-item">
 
-                      <strong>
+                      
+                              <strong>
 
-                        {{ $comment->created_at->diffForHumans() }}: &nbsp
+                                  {{ $comment->created_at->diffForHumans() }}: &nbsp
 
-                      </strong>
+                              </strong>
 
-                      {{ $comment->body }}
+                                  {{ $comment->body }}
 
-                    </li>
+                          </li>
 
                   @endforeach
 
-                </ul>
+                  </ul>
 
                 </div>
 
